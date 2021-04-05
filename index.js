@@ -14,21 +14,21 @@ const soundFileUrls = [
 
 // Sound pre-cache for better experience in website
 window.caches.open('sound-pre-cache')
-    .then(cache => Promise.all(soundFileUrls.map(videoFileUrl => fetchAndCache(videoFileUrl, cache))));
+    .then(cache => Promise.all(soundFileUrls.map(soundFileUrl => fetchAndCache(soundFileUrl, cache))));
 
-function fetchAndCache(videoFileUrl, cache) {
+function fetchAndCache(soundFileUrl, cache) {
     // Check first if video is in the cache.
-    return cache.match(videoFileUrl)
+    return cache.match(soundFileUrl)
         .then(cacheResponse => {
             // Let's return cached response if video is already in the cache.
             if (cacheResponse) {
                 return cacheResponse;
             }
             // Otherwise, fetch the video from the network.
-            return fetch(videoFileUrl)
+            return fetch(soundFileUrl)
                 .then(networkResponse => {
                     // Add the response to the cache and return network response in parallel.
-                    cache.put(videoFileUrl, networkResponse.clone());
+                    cache.put(soundFileUrl, networkResponse.clone());
                     return networkResponse;
                 });
         });

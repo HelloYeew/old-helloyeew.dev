@@ -32,6 +32,7 @@ function fetchAndCache(soundFileUrl, cache) {
                     return networkResponse;
                 });
         });
+    sayWelcome()
 }
 
 function showabout(){

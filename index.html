@@ -44,9 +44,27 @@
                     <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.4s;"><a class="social" href="https://twitter.com/nonggummud" target="_blank"><i class="fab fa-twitter"></i></a></td>
                     <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.6s;"><a class="social" href="https://www.instagram.com/ttim.gummud/" target="_blank"><i class="fab fa-instagram"></i></a></td>
                     <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.8s;"><a class="social" href="https://github.com/HelloYeew" target="_blank"><i class="fab fa-github"></i></a></td>
-<!--                    <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:3.0s;"><a class="social"><i class="fas fa-cog"></i></a></td>-->
+                    <td onmouseover="mouseOver()" onclick="showsetting()" class="animated zoomIn" style="animation-delay:3.0s;"><a class="social"><i class="fas fa-cog"></i></a></td>
                 </tr>
         </table>
+        <script>
+            function showsetting(){
+                SettingIn.play();
+                $("#setting_container").css("display","inherit");
+                $("#setting_container").addClass("animated slideInLeft");
+                setTimeout(function(){
+                    $("#setting_container").removeClass("animated slideInLeft");
+                },800);
+            }
+            function closesetting(){
+                WaveOut.play();
+                $("#setting_container").addClass("animated slideOutLeft");
+                setTimeout(function(){
+                    $("#setting_container").removeClass("animated slideOutLeft");
+                    $("#setting_container").css("display","none");
+                },800);
+            }
+        </script>
     </div>
     <div id="work_container" class="container">
         <div onclick="closework()"><i class="fas fa-angle-right"></i></div>
@@ -96,7 +114,7 @@
                 </p>
             </section>
         </div>
-    <div id="setting_container" class="container">
+    <div id="setting_container" class="setting-container">
         <div onclick="closesetting()"><i class="fas fa-angle-left"></i></div>
         <h1>setting.</h1>
         <section>

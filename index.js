@@ -1,8 +1,11 @@
-let WaveIn = new Audio("assets/enter.wav");
-let WaveOut = new Audio("assets/back.wav");
-let Hover = new Audio("assets/hover.wav");
-let Select = new Audio("assets/select.wav");
-let Welcome = new Audio("assets/welcome.wav");
+let WaveIn = new Audio("assets/sound/enter.wav");
+let WaveOut = new Audio("assets/sound/back.wav");
+let Hover = new Audio("assets/sound/hover.wav");
+let Select = new Audio("assets/sound/select.wav");
+let Welcome = new Audio("assets/sound/welcome.wav");
+let SettingIn = new Audio("assets/sound/settings-in.wav");
+
+// TODO: Add variable to support the setting button afloat and not occur the other button event
 
 const soundFileUrls = [
     'assets/enter.wav',
@@ -83,22 +86,7 @@ function closecontact(){
         $("#contact_container").css("display","none");
     },800);
 }
-function showsetting(){
-    WaveIn.play();
-    $("#setting_container").css("display","inherit");
-    $("#setting_container").addClass("animated slideInLeft");
-    setTimeout(function(){
-        $("#setting_container").removeClass("animated slideInLeft");
-    },800);
-}
-function closesetting(){
-    WaveOut.play();
-    $("#setting_container").addClass("animated slideOutLeft");
-    setTimeout(function(){
-        $("#setting_container").removeClass("animated slideOutLeft");
-        $("#setting_container").css("display","none");
-    },800);
-}
+
 
 setTimeout(function(){
     $("#loading").addClass("animated fadeOut");

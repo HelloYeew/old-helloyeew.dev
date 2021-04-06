@@ -3,7 +3,7 @@
 body {
     padding:0px;
     margin:0px;
-    background:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background.png") center center;
+    background:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/snow_mountain.jpeg") center center;
     background-size:cover;
     width:100vw;
     height:100vh;
@@ -164,6 +164,18 @@ body {
     text-align:center;
 }
 .social:hover { 
+    cursor: pointer;
+    color:rgb(255, 50, 50);
+}
+.setting {
+    color:#fff;
+    font-size:22px;
+    border-radius:50%;
+    transition:0.4s ease-in-out;
+    margin:0px 8px;
+    text-align:center;
+}
+.setting:hover {
     cursor: pointer;
     color:rgb(255, 50, 50);
 }
@@ -358,4 +370,7 @@ body {
     #box div {
         width:100%;
     }
+}
+#favicon {
+    border-radius: 50%;
 }

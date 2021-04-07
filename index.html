@@ -50,6 +50,7 @@
         <script>
             function showsetting(){
                 SettingIn.play();
+                openSetting = true;
                 $("#setting_container").css("display","inherit");
                 $("#setting_container").addClass("animated slideInLeft");
                 setTimeout(function(){
@@ -67,7 +68,7 @@
         </script>
     </div>
     <div id="work_container" class="container">
-        <div onclick="closework()"><i class="fas fa-angle-right"></i></div>
+        <div onmouseover="mouseOver()" onclick="closework()"><i class="fas fa-angle-right"></i></div>
         <h1>works.</h1>
         <section>
             <h2>work title</h2>
@@ -84,7 +85,7 @@
         </section>
     </div>
     <div id="about_container" class="container">
-            <div onclick="closeabout()"><i class="fas fa-angle-left"></i></div>
+            <div onmouseover="mouseOver()" onclick="closeabout()"><i class="fas fa-angle-left"></i></div>
             <h1>about.</h1>
             <section>
                 <h2>about me</h2>
@@ -100,7 +101,7 @@
             </section>
         </div>
           <div id="contact_container" class="container">
-            <div onclick="closecontact()"><i class="fas fa-angle-down"></i></div>
+            <div onmouseover="mouseOver()" onclick="closecontact()"><i class="fas fa-angle-down"></i></div>
             <h1>contact.</h1>
             <section>
                 <h2>contact me</h2>
@@ -115,14 +116,18 @@
             </section>
         </div>
     <div id="setting_container" class="setting-container">
-        <div onclick="closesetting()"><i class="fas fa-angle-left"></i></div>
+        <div onmouseover="mouseOver()" onclick="closesetting()"><i class="fas fa-angle-left"></i></div>
         <h1>setting.</h1>
         <section>
-            <h2>Coming Soon!</h2>
+            <h2>Background setting</h2>
+            <h3>Click to change a background</h3>
+            <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('yourname.png')>Your Name</button>
+            <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('snow_miku.jpeg')>Snow Miku</button>
+            <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('snow_mountain.jpeg')>Snow Mountain</button>
         </section>
     </div>
         <div id="footer">
-            Made on earth by a MONKE <br>HelloYeew and credit to <a href="https://imfunniee.github.io">imfunniee</a>
+            Made on earth by a MONKE <br>HelloYeew and credit to <a onclick=mouseSelect() href="https://imfunniee.github.io">imfunniee</a>
         </div>
     <script src="index.js" type="text/javascript"></script>
     <script src="particles.js"></script>

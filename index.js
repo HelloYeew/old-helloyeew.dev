@@ -4,6 +4,13 @@ let Hover = new Audio("assets/sound/hover.wav");
 let Select = new Audio("assets/sound/select.wav");
 let Welcome = new Audio("assets/sound/welcome.wav");
 let SettingIn = new Audio("assets/sound/settings-in.wav");
+let SettingOnClick = new Audio("assets/sound/settings-noclick.wav");
+let SettingSelect = new Audio("assets/sound/settings-select.wav");
+
+let openWork = false;
+let openContact = false;
+let openAbout = false;
+let openSetting = false;
 
 // TODO: Add variable to support the setting button afloat and not occur the other button event
 
@@ -40,6 +47,7 @@ function fetchAndCache(soundFileUrl, cache) {
 
 function showabout(){
     WaveIn.play();
+    openAbout = true;
     $("#about_container").css("display","inherit");
     $("#about_container").addClass("animated slideInLeft");
     setTimeout(function(){
@@ -56,6 +64,7 @@ function closeabout(){
 }
 function showwork(){
     WaveIn.play();
+    openWork = true;
     $("#work_container").css("display","inherit");
     $("#work_container").addClass("animated slideInRight");
     setTimeout(function(){
@@ -72,6 +81,7 @@ function closework(){
 }
 function showcontact(){
     WaveIn.play();
+    openContact = true;
     $("#contact_container").css("display","inherit");
     $("#contact_container").addClass("animated slideInUp");
     setTimeout(function(){
@@ -114,4 +124,33 @@ function sayWelcome() {
     Welcome.play();
 }
 
+function settingMouseOver() {
+    SettingOnClick.play();
+}
 
+function settingSelect() {
+    SettingSelect.play();
+}
+
+document.addEventListener('keydown', (event) => {
+    const keyName = event.keyCode;
+
+    if (keyName === 27 && openWork === true) {
+        closework();
+        openWork = false;
+    } else if (keyName === 27 && openContact === true) {
+        closecontact();
+        openContact = false;
+    } else if (keyName === 27 && openAbout === true) {
+        closeabout();
+        openAbout = false;
+    } else if (keyName === 27 && openSetting === true) {
+        closesetting()
+        openSetting = false;
+    }
+}, false);
+
+function changeBackground(filename) {
+    settingSelect();
+    document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/' + filename + '") center center';
+}

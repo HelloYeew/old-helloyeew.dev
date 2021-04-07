@@ -6,6 +6,7 @@ let Welcome = new Audio("assets/sound/welcome.wav");
 let SettingIn = new Audio("assets/sound/settings-in.wav");
 let SettingOnClick = new Audio("assets/sound/settings-noclick.wav");
 let SettingSelect = new Audio("assets/sound/settings-select.wav");
+let Error = new Audio("assets/sound/error.wav");
 
 let openWork = false;
 let openContact = false;
@@ -134,6 +135,10 @@ function settingSelect() {
     SettingSelect.play();
 }
 
+function errorSound() {
+    Error.play();
+}
+
 document.addEventListener('keydown', (event) => {
     const keyName = event.keyCode;
 
@@ -154,7 +159,7 @@ document.addEventListener('keydown', (event) => {
 
 function changeBackground(filename) {
     if (videoMode === true) {
-        settingSelect();
+        errorSound();
         document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/black.svg") center center';
     } else {
         settingSelect();

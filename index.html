@@ -163,10 +163,16 @@
             <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('firework.jpeg')>Firework</button>
         </section>
         <section>
-            <h2>Video Control Button</h2>
+            <h2>Video Setting</h2>
             <h3>Click to change a background as a video and you can control it here. (Only support in PC)</h3>
-            <button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()>Play</button>
-            <button class="btn_one" id="videoModeButton" onmouseover=settingMouseOver() onclick=changeMode()>Set Background to Video</button>
+            <button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-play"></i></button>
+            <button class="btn_one" id="videoModeButton" onmouseover=settingMouseOver() onclick=changeMode()>Video Mode</button>
+            <button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-mute"></i></button>
+        </section>
+        <section>
+            <h2>Visual Setting</h2>
+            <button class="btn_one" onmouseover=settingMouseOver()>Screenshot Mode</button>
+
         </section>
         <script>
             // Get the video
@@ -176,6 +182,7 @@
             var btn = document.getElementById("videoButton");
             var mode_btn = document.getElementById("videoModeButton");
             var background_button = document.getElementsByClassName("btn_one_background");
+            var mute_button = document.getElementById("VideoMuted")
 
             // Pause and play the video, and change the button text
             function videoFunction() {
@@ -186,10 +193,10 @@
                 }
                 if (video.paused) {
                     video.play();
-                    btn.innerHTML = "Pause";
+                    btn.innerHTML = "<i class=\"fas fa-pause\"></i>";
                 } else {
                     video.pause();
-                    btn.innerHTML = "Play";
+                    btn.innerHTML = "<i class=\"fas fa-play\"></i>";
                 }
             }
 
@@ -198,7 +205,7 @@
                     videoMode = false;
                     video.style.opacity = '0';
                     changeBackground(currentBackground)
-                    mode_btn.innerHTML = "Set Background to Video"
+                    mode_btn.innerHTML = "Video Mode"
                     if (video.play) {
                         video.pause();
                     }
@@ -206,18 +213,28 @@
                 } else {
                     removeBackground()
                     video.style.opacity = '0.5';
-                    mode_btn.innerHTML = "Set Background back to normal"
+                    mode_btn.innerHTML = "Normal Mode"
                     video.play();
                     background_button.disabled = true;
                     videoMode = true;
                 }
             }
 
+            function videoSound() {
+                if (video.muted) {
+                    video.muted = false;
+                    mute_button.innerHTML = '<i class="fas fa-volume-up"></i>'
+                } else {
+                    video.muted = true;
+                    mute_button.innerHTML = '<i class="fas fa-volume-mute"></i>'
+                }
+            }
+
             video.addEventListener('play', event => {
-                btn.innerHTML = "Pause";
+                btn.innerHTML = '<i class="fas fa-pause">';
             });
             video.addEventListener('pause', event => {
-                btn.innerHTML = "Play";
+                btn.innerHTML = '<i class="fas fa-play">';
             });
         </script>
     </div>

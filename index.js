@@ -154,6 +154,7 @@ document.addEventListener('keydown', (event) => {
 
 function changeBackground(filename) {
     if (videoMode === true) {
+        settingSelect();
         document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/black.svg") center center';
     } else {
         settingSelect();
@@ -163,5 +164,6 @@ function changeBackground(filename) {
 }
 
 function removeBackground() {
+    settingSelect();
     document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/black.svg") center center';
 }

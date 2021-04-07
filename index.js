@@ -11,7 +11,7 @@ let openWork = false;
 let openContact = false;
 let openAbout = false;
 let openSetting = false;
-let currentBackground = 'yourname.png';
+let currentBackground = 'yourname.gif';
 let videoMode = false;
 
 // TODO: Add variable to support the setting button afloat and not occur the other button event
@@ -153,7 +153,15 @@ document.addEventListener('keydown', (event) => {
 }, false);
 
 function changeBackground(filename) {
-    settingSelect();
-    document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/' + filename + '") center center';
-    currentBackground = filename;
+    if (videoMode === true) {
+        document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/black.svg") center center';
+    } else {
+        settingSelect();
+        document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/' + filename + '") center center';
+        currentBackground = filename;
+    }
+}
+
+function removeBackground() {
+    document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/black.svg") center center';
 }

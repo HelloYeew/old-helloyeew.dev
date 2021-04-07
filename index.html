@@ -19,7 +19,7 @@
 <!--TODO: Fix preload sound-->
 <body onload="sayWelcome()">
 
-    <video autoplay loop id="videoBackground">
+    <video loop id="videoBackground">
         <source src="assets/background/ano-yume.mp4" type="video/mp4">
     </video>
 
@@ -136,13 +136,18 @@
             <h2>Background setting</h2>
             <h3>Click to change a background</h3>
             <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('yourname.png')>Your Name</button>
+            <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('yourname.gif')>Your Name (GIF)</button>
             <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('snow_miku.jpeg')>Snow Miku</button>
             <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('snow_mountain.jpeg')>Snow Mountain</button>
             <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('firework_festival_girl.jpg')>Firework Festival Girl</button>
+            <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('hanabi.jpeg')>Fireworks (Anime)</button>
+            <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('firework.jpeg')>Firework</button>
         </section>
         <section>
             <h2>Video Control Button</h2>
-            <button class="btn_one" id="videoButton" onclick=videoFunction()>Play</button>
+            <h3>Click to change a background as a video and you can control it here. (Only support in PC)</h3>
+            <button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()>Play</button>
+            <button class="btn_one" id="videoModeButton" onmouseover=settingMouseOver() onclick=changeMode()>Set Background to Video</button>
         </section>
         <script>
             // Get the video
@@ -150,12 +155,15 @@
 
             // Get the button
             var btn = document.getElementById("videoButton");
+            var mode_btn = document.getElementById("videoModeButton");
+            var background_button = document.getElementsByClassName("btn_one_background");
 
             // Pause and play the video, and change the button text
             function videoFunction() {
                 if (videoMode === false && video.paused) {
-                    changeBackground('black.svg')
-                    video.style.opacity = '0.5'
+                    removeBackground()
+                    video.style.opacity = '0.5';
+                    videoMode = true;
                 }
                 if (video.paused) {
                     video.play();
@@ -166,8 +174,31 @@
                 }
             }
 
+            function changeMode() {
+                if (videoMode === true) {
+                    videoMode = false;
+                    video.style.opacity = '0';
+                    changeBackground(currentBackground)
+                    mode_btn.innerHTML = "Set Background to Video"
+                    if (video.play) {
+                        video.pause();
+                    }
+                    background_button.disabled = false;
+                } else {
+                    removeBackground()
+                    video.style.opacity = '0.5';
+                    mode_btn.innerHTML = "Set Background back to normal"
+                    video.play();
+                    background_button.disabled = true;
+                    videoMode = true;
+                }
+            }
+
             video.addEventListener('play', event => {
-                changeBackground('black.svg');
+                btn.innerHTML = "Pause";
+            });
+            video.addEventListener('pause', event => {
+                btn.innerHTML = "Play";
             });
         </script>
     </div>

@@ -9,11 +9,14 @@ let SettingSelect = new Audio("assets/sound/settings-select.wav");
 let Error = new Audio("assets/sound/error.wav");
 let NowPlaying = new Audio("assets/sound/now-playing.wav");
 
+
 let openWork = false;
 let openContact = false;
 let openAbout = false;
 let openSetting = false;
 let currentBackground = 'yourname.gif';
+let currentVideo = 'ano-yume.mp4';
+let currentMode = 'normal';
 let videoMode = false;
 
 // TODO: Add variable to support the setting button afloat and not occur the other button event
@@ -144,6 +147,7 @@ function nowPlayingSound() {
     NowPlaying.play();
 }
 
+
 document.addEventListener('keydown', (event) => {
     const keyName = event.keyCode;
 
@@ -177,3 +181,4 @@ function removeBackground() {
     settingSelect();
     document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/black.svg") center center';
 }
+

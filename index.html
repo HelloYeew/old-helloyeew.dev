@@ -38,9 +38,7 @@
 <!--TODO: Fix preload sound-->
 <body onload="sayWelcome()">
 
-    <video loop id="videoBackground">
-        <source src="assets/background/ano-yume.mp4" type="video/mp4">
-    </video>
+    <video loop id="videoBackground"></video>
 
     <div id="loading">
         <div id="spinner"></div>
@@ -152,6 +150,11 @@
         <div onmouseover="mouseOver()" onclick="closesetting()"><i class="fas fa-angle-left"></i></div>
         <h1>setting.</h1>
         <section>
+            <h2>Mode setting</h2>
+            <h3>You can change between normal mode and video mode here. (Video mode only support in PC now)</h3>
+            <button class="btn_one" id="videoModeButton" onmouseover=settingMouseOver() onclick=changeMode()>Video Mode</button>
+        </section>
+        <section>
             <h2>Background setting</h2>
             <h3 id="warning-background"></h3>
             <a id="background-setting">
@@ -168,28 +171,45 @@
         </section>
         <section>
             <h2>Video Setting</h2>
-            <h3>Click to change a background as a video and you can control it here. (Currently only support in PC)</h3>
-            <button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-play"></i></button>
-            <button class="btn_one" id="videoModeButton" onmouseover=settingMouseOver() onclick=changeMode()>Video Mode</button>
-            <button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-mute"></i></button>
+<!--            <h3>Click to change a background as a video and you can control it here. (Currently only support in PC)</h3>-->
+            <h3 id="warning-video"><i class="fas fa-exclamation-circle"></i>You are in normal mode. Please change to video mode first.</h3>
+            <a id="video-setting">
+                <h3 id="now-playing"></h3>
+                <a id="video-controller"></a>
+                    <a id="setting-play"></a><a id="setting-mute"></a>
+                <h3 id="video-setting-text"></h3>
+                <a id="video-change"></a>
+                <h3 id="age-notice"></h3>
+            </a>
         </section>
         <section>
             <h2>Visual Setting</h2>
-            <button class="btn_one" onmouseover=settingMouseOver()>Screenshot Mode</button>
+            <button class="btn_one" onmouseover=settingMouseOver() onclick=tryButton()>Screenshot Mode</button>
 
         </section>
         <script>
             // Get the video
             var video = document.getElementById("videoBackground");
+            var source = document.createElement('source');
+
+            video.appendChild(source);
+
+            source.setAttribute('src', 'assets/background/ano-yume.mp4');
 
             // Get the button
             var btn = document.getElementById("videoButton");
             var mode_btn = document.getElementById("videoModeButton");
             var background_button = document.getElementById("background-setting");
+            var video_button = document.getElementById("video-setting");
             var mute_button = document.getElementById("VideoMuted")
+            var playing_text = document.getElementById("now-playing")
 
-            // Pause and play the video, and change the button text
+            let ConfirmSelection = new Audio("assets/sound/confirm-selection.wav");
+            let ScratchDisc = new Audio("assets/sound/scratch-disc.wav")
+            let VideoControl = new Audio("assets/sound/video-control.wav")
+
             function videoFunction() {
+                videoControl();
                 if (videoMode === false && video.paused) {
                     removeBackground()
                     hideBackgroundButton()
@@ -199,46 +219,64 @@
                 }
                 if (video.paused) {
                     video.play();
-                    btn.innerHTML = "<i class=\"fas fa-pause\"></i>";
+                    // btn.innerHTML = "<i class=\"fas fa-pause\"></i>";
+                    document.getElementById("setting-play").innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-pause"></i></button>'
                 } else {
                     video.pause();
-                    btn.innerHTML = "<i class=\"fas fa-play\"></i>";
+                    // btn.innerHTML = "<i class=\"fas fa-play\"></i>";
+                    document.getElementById("setting-play").innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-play"></i></button>'
                 }
             }
 
             function changeMode() {
                 if (videoMode === true) {
-                    nowPlayingSound();
+                    currentMode = 'normal';
+                    scratchDisc();
                     videoMode = false;
                     video.style.opacity = '0';
                     changeBackground(currentBackground)
+                    playing_text.innerHTML = "Now Playing : None"
                     mode_btn.innerHTML = "Video Mode"
-                    showBackgroundButton()
                     document.getElementById("warning-background").innerHTML = "";
                     if (video.play) {
                         video.pause();
                     }
+                    showBackgroundButton()
+                    hideVideoButton()
+                    document.getElementById("warning-video").innerHTML = "<i class=\"fas fa-exclamation-circle\"></i>You are in normal mode. Please change to video mode first.";
                     background_button.disabled = false;
                 } else {
-                    nowPlayingSound();
-                    removeBackground()
+                    currentMode = 'video';
+                    scratchDisc();
+                    removeBackground();
+                    nowPlayingText()
                     video.style.opacity = '0.5';
                     mode_btn.innerHTML = "Normal Mode"
                     video.play();
                     background_button.disabled = true;
                     videoMode = true;
                     document.getElementById("warning-background").innerHTML = "<i class=\"fas fa-exclamation-circle\"></i>You are in video mode. Please change to normal mode first.";
+                    document.getElementById("warning-video").innerHTML = "";
                     hideBackgroundButton()
+                    showVideoButton()
+                    if (video.muted) {
+                        document.getElementById("setting-mute").innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-mute"></i></button>';
+                    } else {
+                        document.getElementById("setting-mute").innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-up"></i></button>';
+                    }
                 }
             }
 
             function videoSound() {
+                videoControl();
                 if (video.muted) {
                     video.muted = false;
-                    mute_button.innerHTML = '<i class="fas fa-volume-up"></i>'
+                    // mute_button.innerHTML = '<i class="fas fa-volume-up"></i>'
+                    document.getElementById("setting-mute").innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-up"></i></button>'
                 } else {
                     video.muted = true;
-                    mute_button.innerHTML = '<i class="fas fa-volume-mute"></i>'
+                    // mute_button.innerHTML = '<i class="fas fa-volume-mute"></i>'
+                    document.getElementById("setting-mute").innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-mute"></i></button>'
                 }
             }
 
@@ -259,14 +297,81 @@
                     "<button class=\"btn_one background-setting\" onmouseover=settingMouseOver() onclick=changeBackground('sword-art-online.png')>Sword Art Online</button>"
             }
 
+            function hideVideoButton() {
+                document.getElementById("now-playing").innerHTML = ""
+                document.getElementById("setting-play").innerHTML = ''
+                document.getElementById("setting-mute").innerHTML = ''
+                document.getElementById("video-setting-text").innerHTML = ''
+                document.getElementById("video-change").innerHTML = ""
+                document.getElementById("age-notice").innerHTML = ""
+            }
+
+            function showVideoButton() {
+                document.getElementById("now-playing").innerHTML = "Now Playing : None"
+                document.getElementById("setting-play").innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-play"></i></button>'
+                document.getElementById("setting-mute").innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-mute"></i></button>'
+                document.getElementById("video-setting-text").innerHTML = 'Click to change video'
+                document.getElementById("video-change").innerHTML = "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('ano-yume.mp4')>あの夢をなぞって</button><button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('jumping-heart.mp4')>青空Jumping Heart (OP)</button><button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('mopemope.mp4')>もぺもぺ</button>"
+                if (currentVideo === "mopemope.mp4") {
+                    document.getElementById("age-notice").innerHTML = '<i class=\"fas fa-exclamation-circle\"></i>This video is NOT for children!'
+                }
+                nowPlayingText()
+            }
+
+            function changeVideo(filename) {
+                confirmSelection()
+                video.pause();
+                currentVideo = filename;
+                source.setAttribute('src', 'assets/background/' + filename);
+                nowPlayingText()
+                video.load();
+                video.play();
+                if (currentVideo === "mopemope.mp4") {
+                    document.getElementById("age-notice").innerHTML = '<i class=\"fas fa-exclamation-circle\"></i>This video is NOT for children!'
+                }
+            }
+
+            function nowPlayingText() {
+                if (currentVideo === 'ano-yume.mp4') {
+                    playing_text.innerHTML = "Now Playing : あの夢をなぞって"
+                } else if (currentVideo === 'jumping-heart.mp4') {
+                    playing_text.innerHTML = "Now Playing : 青空Jumping Heart (OP)"
+                } else if (currentVideo === 'mopemope.mp4') {
+                    playing_text.innerHTML = "Now Playing : もぺもぺ"
+                } else {
+                    playing_text.innerHTML = "null"
+                }
+                if (currentVideo === 'mopemope.mp4') {
+                    document.getElementById("age-notice").innerHTML = '<i class=\"fas fa-exclamation-circle\"></i>This video is NOT for children!'
+                } else {
+                    document.getElementById("age-notice").innerHTML = ''
+                }
+            }
+
+            function confirmSelection() {
+                ConfirmSelection.play();
+            }
+
+            function scratchDisc() {
+                ScratchDisc.play();
+            }
+
+            function videoControl() {
+                VideoControl.play();
+            }
+
             video.addEventListener('play', event => {
-                btn.innerHTML = '<i class="fas fa-pause">';
+                if (currentMode === 'video') {
+                    document.getElementById("setting-play").innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-pause"></i></button>';
+                }
             });
             video.addEventListener('pause', event => {
-                btn.innerHTML = '<i class="fas fa-play">';
+                if (currentMode === 'video') {
+                    document.getElementById("setting-play").innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-play"></i></button>';
+                }
             });
             video.addEventListener('muted', event => {
-                mute_button.innerHTML = '<i class="fas fa-volume-up"></i>'
+                document.getElementById("setting-mute").innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-up"></i></button>';
             });
         </script>
     </div>

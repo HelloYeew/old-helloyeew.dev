@@ -63,15 +63,17 @@
             <a onclick="showwork()">work</a>
             <a onclick="showcontact()">contact</a>
         </div>
-        <table>
-                <tr>
-                    <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.2s;"><a class="social" href="https://www.facebook.com/HelloYeew/" target="_blank"><i class="fab fa-facebook"></i></a></td>
-                    <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.4s;"><a class="social" href="https://twitter.com/nonggummud" target="_blank"><i class="fab fa-twitter"></i></a></td>
-                    <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.6s;"><a class="social" href="https://www.instagram.com/ttim.gummud/" target="_blank"><i class="fab fa-instagram"></i></a></td>
-                    <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.8s;"><a class="social" href="https://github.com/HelloYeew" target="_blank"><i class="fab fa-github"></i></a></td>
-                    <td onmouseover="mouseOver()" onclick="showsetting()" class="animated zoomIn" style="animation-delay:3.0s;"><a class="social"><i class="fas fa-cog"></i></a></td>
-                </tr>
-        </table>
+        <div id="social-table"></div>
+            <table>
+                    <tr>
+                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.2s;"><a class="social" href="https://www.facebook.com/HelloYeew/" target="_blank"><i class="fab fa-facebook"></i></a></td>
+                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.4s;"><a class="social" href="https://twitter.com/nonggummud" target="_blank"><i class="fab fa-twitter"></i></a></td>
+                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.6s;"><a class="social" href="https://www.instagram.com/ttim.gummud/" target="_blank"><i class="fab fa-instagram"></i></a></td>
+                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.8s;"><a class="social" href="https://github.com/HelloYeew" target="_blank"><i class="fab fa-github"></i></a></td>
+                        <td onmouseover="mouseOver()" onclick="showsetting()" class="animated zoomIn" style="animation-delay:3.0s;"><a class="social"><i class="fas fa-cog"></i></a></td>
+                    </tr>
+            </table>
+        </div>
         <script>
             function showsetting(){
                 if (openSetting === true) {
@@ -182,11 +184,11 @@
                 <h3 id="age-notice"></h3>
             </a>
         </section>
-        <section>
-            <h2>Visual Setting</h2>
-            <button class="btn_one" onmouseover=settingMouseOver() onclick=tryButton()>Screenshot Mode</button>
+<!--        <section>-->
+<!--            <h2>Visual Setting</h2>-->
+<!--            <button class="btn_one" onmouseover=settingMouseOver() onclick=screenshotModeOn()>Screenshot Mode</button>-->
 
-        </section>
+<!--        </section>-->
         <script>
             // Get the video
             var video = document.getElementById("videoBackground");
@@ -311,7 +313,11 @@
                 document.getElementById("setting-play").innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-play"></i></button>'
                 document.getElementById("setting-mute").innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-mute"></i></button>'
                 document.getElementById("video-setting-text").innerHTML = 'Click to change video'
-                document.getElementById("video-change").innerHTML = "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('ano-yume.mp4')>あの夢をなぞって</button><button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('jumping-heart.mp4')>青空Jumping Heart (OP)</button><button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('mopemope.mp4')>もぺもぺ</button>"
+                document.getElementById("video-change").innerHTML = "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('ano-yume.mp4')>あの夢をなぞって</button>" +
+                    "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('jumping-heart.mp4')>青空Jumping Heart (OP)</button>" +
+                    "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('mopemope.mp4')>もぺもぺ</button>" +
+                    "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('alicization.mp4')>ADAMAS (OP)</button>" +
+                    "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('umaru.mp4')>かくしん的☆めたまるふぉ～ぜっ！(OP)</button>"
                 if (currentVideo === "mopemope.mp4") {
                     document.getElementById("age-notice").innerHTML = '<i class=\"fas fa-exclamation-circle\"></i>This video is NOT for children!'
                 }
@@ -338,6 +344,10 @@
                     playing_text.innerHTML = "Now Playing : 青空Jumping Heart (OP)"
                 } else if (currentVideo === 'mopemope.mp4') {
                     playing_text.innerHTML = "Now Playing : もぺもぺ"
+                } else if (currentVideo === "alicization.mp4") {
+                    playing_text.innerHTML = "Now Playing : ADAMAS (OP)"
+                } else if (currentVideo === 'umaru.mp4') {
+                    playing_text.innerHTML = "Now Playing : かくしん的☆めたまるふぉ～ぜっ！(OP)"
                 } else {
                     playing_text.innerHTML = "null"
                 }
@@ -359,6 +369,40 @@
             function videoControl() {
                 VideoControl.play();
             }
+
+            var SocialTable = document.getElementById("social-table")
+            var Menu = document.getElementById("menu")
+            var Footer = document.getElementById("footer")
+
+            // function screenshotModeOn() {
+            //     // SocialTable.innerHTML = '<table>\n' +
+            //     //     '                    <tr>\n' +
+            //     //     '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.2s;"><a class="social" href="https://www.facebook.com/HelloYeew/" target="_blank"><i class="fab fa-facebook"></i></a></td>\n' +
+            //     //     '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.4s;"><a class="social" href="https://twitter.com/nonggummud" target="_blank"><i class="fab fa-twitter"></i></a></td>\n' +
+            //     //     '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.6s;"><a class="social" href="https://www.instagram.com/ttim.gummud/" target="_blank"><i class="fab fa-instagram"></i></a></td>\n' +
+            //     //     '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.8s;"><a class="social" href="https://github.com/HelloYeew" target="_blank"><i class="fab fa-github"></i></a></td>\n' +
+            //     //     '                    </tr>\n' +
+            //     //     '            </table>'
+            //     // Menu.innerHTML = ''
+            //     // Footer.innerHTML = ''
+            //     Menu.style.opacity = '0';
+            // }
+            //
+            // function screenshotModeOff() {
+            //     SocialTable.innerHTML = '<table>\n' +
+            //         '                    <tr>\n' +
+            //         '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.2s;"><a class="social" href="https://www.facebook.com/HelloYeew/" target="_blank"><i class="fab fa-facebook"></i></a></td>\n' +
+            //         '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.4s;"><a class="social" href="https://twitter.com/nonggummud" target="_blank"><i class="fab fa-twitter"></i></a></td>\n' +
+            //         '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.6s;"><a class="social" href="https://www.instagram.com/ttim.gummud/" target="_blank"><i class="fab fa-instagram"></i></a></td>\n' +
+            //         '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.8s;"><a class="social" href="https://github.com/HelloYeew" target="_blank"><i class="fab fa-github"></i></a></td>\n' +
+            //         '                        <td onmouseover="mouseOver()" onclick="showsetting()" class="animated zoomIn" style="animation-delay:3.0s;"><a class="social"><i class="fas fa-cog"></i></a></td>\n' +
+            //         '                    </tr>\n' +
+            //         '            </table>'
+            //     Menu.innerHTML = '<a onclick="showabout()">about</a>\n' +
+            //         '            <a onclick="showwork()">work</a>\n' +
+            //         '            <a onclick="showcontact()">contact</a>'
+            //     Footer.innerHTML = 'Made by HelloYeew<br>Get some code from <a onclick=mouseSelect() href="https://imfunniee.github.io" target="_blank">imfunniee</a><br><a onclick=mouseSelect() href="https://github.com/HelloYeew/helloyeew.dev" target="_blank">GitHub Repositories</a>'
+            // }
 
             video.addEventListener('play', event => {
                 if (currentMode === 'video') {

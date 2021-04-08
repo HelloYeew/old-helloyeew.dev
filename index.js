@@ -7,6 +7,7 @@ let SettingIn = new Audio("assets/sound/settings-in.wav");
 let SettingOnClick = new Audio("assets/sound/settings-noclick.wav");
 let SettingSelect = new Audio("assets/sound/settings-select.wav");
 let Error = new Audio("assets/sound/error.wav");
+let NowPlaying = new Audio("assets/sound/now-playing.wav");
 
 let openWork = false;
 let openContact = false;
@@ -137,6 +138,10 @@ function settingSelect() {
 
 function errorSound() {
     Error.play();
+}
+
+function nowPlayingSound() {
+    NowPlaying.play();
 }
 
 document.addEventListener('keydown', (event) => {

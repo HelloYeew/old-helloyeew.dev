@@ -153,16 +153,18 @@
         <h1>setting.</h1>
         <section>
             <h2>Background setting</h2>
-            <h3>Click to change a background</h3>
-            <h4 id="warning-background"></h4>
-            <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('yourname.png')>Your Name</button>
-            <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('yourname.gif')>Your Name (GIF)</button>
-            <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('snow_miku.jpeg')>Snow Miku</button>
-            <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('snow_mountain.jpeg')>Snow Mountain</button>
-            <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('firework_festival_girl.jpg')>Firework Festival Girl</button>
-            <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('hanabi.jpeg')>Fireworks (Anime)</button>
-            <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('firework.jpeg')>Firework</button>
-            <button class="btn_one" onmouseover=settingMouseOver() onclick=changeBackground('sword-art-online.png')>Sword Art Online</button>
+            <h3 id="warning-background"></h3>
+            <a id="background-setting">
+                <h3>Click to change a background</h3>
+                <button class="btn_one background-setting" onmouseover=settingMouseOver() onclick=changeBackground('yourname.png')>Your Name</button>
+                <button class="btn_one background-setting" onmouseover=settingMouseOver() onclick=changeBackground('yourname.gif')>Your Name (GIF)</button>
+                <button class="btn_one background-setting" onmouseover=settingMouseOver() onclick=changeBackground('snow_miku.jpeg')>Snow Miku</button>
+                <button class="btn_one background-setting" onmouseover=settingMouseOver() onclick=changeBackground('snow_mountain.jpeg')>Snow Mountain</button>
+                <button class="btn_one background-setting" onmouseover=settingMouseOver() onclick=changeBackground('firework_festival_girl.jpg')>Firework Festival Girl</button>
+                <button class="btn_one background-setting" onmouseover=settingMouseOver() onclick=changeBackground('hanabi.jpeg')>Fireworks (Anime)</button>
+                <button class="btn_one background-setting" onmouseover=settingMouseOver() onclick=changeBackground('firework.jpeg')>Firework</button>
+                <button class="btn_one background-setting" onmouseover=settingMouseOver() onclick=changeBackground('sword-art-online.png')>Sword Art Online</button>
+            </a>
         </section>
         <section>
             <h2>Video Setting</h2>
@@ -183,14 +185,15 @@
             // Get the button
             var btn = document.getElementById("videoButton");
             var mode_btn = document.getElementById("videoModeButton");
-            var background_button = document.getElementsByClassName("btn_one_background");
+            var background_button = document.getElementById("background-setting");
             var mute_button = document.getElementById("VideoMuted")
 
             // Pause and play the video, and change the button text
             function videoFunction() {
                 if (videoMode === false && video.paused) {
                     removeBackground()
-                    document.getElementById("warning-background").innerHTML = "<i class=\"fas fa-exclamation-circle\"></i>You are in video mode. A background setting will lock. Please change to normal mode first.";
+                    hideBackgroundButton()
+                    document.getElementById("warning-background").innerHTML = "<i class=\"fas fa-exclamation-circle\"></i>You are in video mode. Please change to normal mode first.";
                     video.style.opacity = '0.5';
                     videoMode = true;
                 }
@@ -210,6 +213,7 @@
                     video.style.opacity = '0';
                     changeBackground(currentBackground)
                     mode_btn.innerHTML = "Video Mode"
+                    showBackgroundButton()
                     document.getElementById("warning-background").innerHTML = "";
                     if (video.play) {
                         video.pause();
@@ -223,7 +227,8 @@
                     video.play();
                     background_button.disabled = true;
                     videoMode = true;
-                    document.getElementById("warning-background").innerHTML = "<i class=\"fas fa-exclamation-circle\"></i>You are in video mode. A background setting will lock. Please change to normal mode first.";
+                    document.getElementById("warning-background").innerHTML = "<i class=\"fas fa-exclamation-circle\"></i>You are in video mode. Please change to normal mode first.";
+                    hideBackgroundButton()
                 }
             }
 
@@ -235,6 +240,23 @@
                     video.muted = true;
                     mute_button.innerHTML = '<i class="fas fa-volume-mute"></i>'
                 }
+            }
+
+            function hideBackgroundButton() {
+                background_button.innerHTML = "";
+            }
+
+            function showBackgroundButton() {
+                background_button.innerHTML =
+                    "<h3>Click to change a background</h3>\n" +
+                    "<button class=\"btn_one background-setting\" onmouseover=settingMouseOver() onclick=changeBackground('yourname.png')>Your Name</button>\n" +
+                    "<button class=\"btn_one background-setting\" onmouseover=settingMouseOver() onclick=changeBackground('yourname.gif')>Your Name (GIF)</button>\n" +
+                    "<button class=\"btn_one background-setting\" onmouseover=settingMouseOver() onclick=changeBackground('snow_miku.jpeg')>Snow Miku</button>\n" +
+                    "<button class=\"btn_one background-setting\" onmouseover=settingMouseOver() onclick=changeBackground('snow_mountain.jpeg')>Snow Mountain</button>\n" +
+                    "<button class=\"btn_one background-setting\" onmouseover=settingMouseOver() onclick=changeBackground('firework_festival_girl.jpg')>Firework Festival Girl</button>\n" +
+                    "<button class=\"btn_one background-setting\" onmouseover=settingMouseOver() onclick=changeBackground('hanabi.jpeg')>Fireworks (Anime)</button>\n" +
+                    "<button class=\"btn_one background-setting\" onmouseover=settingMouseOver() onclick=changeBackground('firework.jpeg')>Firework</button>\n" +
+                    "<button class=\"btn_one background-setting\" onmouseover=settingMouseOver() onclick=changeBackground('sword-art-online.png')>Sword Art Online</button>"
             }
 
             video.addEventListener('play', event => {

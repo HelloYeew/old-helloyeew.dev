@@ -173,22 +173,23 @@
         </section>
         <section>
             <h2>Video Setting</h2>
-<!--            <h3>Click to change a background as a video and you can control it here. (Currently only support in PC)</h3>-->
             <h3 id="warning-video"><i class="fas fa-exclamation-circle"></i>You are in normal mode. Please change to video mode first.</h3>
             <a id="video-setting">
                 <h3 id="now-playing"></h3>
+                <h3 id="age-notice"></h3>
                 <a id="video-controller"></a>
                     <a id="setting-play"></a><a id="setting-mute"></a>
                 <h3 id="video-setting-text"></h3>
                 <a id="video-change"></a>
-                <h3 id="age-notice"></h3>
             </a>
         </section>
-<!--        <section>-->
-<!--            <h2>Visual Setting</h2>-->
-<!--            <button class="btn_one" onmouseover=settingMouseOver() onclick=screenshotModeOn()>Screenshot Mode</button>-->
-
-<!--        </section>-->
+        <section>
+            <h2>Keyboard Shortcut</h2>
+            <a id="keyboard-shortcut">
+                <h3>Esc - Close any box</h3>
+                <h3>Q - Change mode between normal and video mode</h3>
+            </a>
+        </section>
         <script>
             // Get the video
             var video = document.getElementById("videoBackground");
@@ -247,12 +248,13 @@
                     hideVideoButton()
                     document.getElementById("warning-video").innerHTML = "<i class=\"fas fa-exclamation-circle\"></i>You are in normal mode. Please change to video mode first.";
                     background_button.disabled = false;
+                    changeKeyboardShortcutText("normal")
                 } else {
                     currentMode = 'video';
                     scratchDisc();
                     removeBackground();
                     nowPlayingText()
-                    video.style.opacity = '0.5';
+                    video.style.opacity = '0.4';
                     mode_btn.innerHTML = "Normal Mode"
                     video.play();
                     background_button.disabled = true;
@@ -266,6 +268,7 @@
                     } else {
                         document.getElementById("setting-mute").innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-up"></i></button>';
                     }
+                    changeKeyboardShortcutText("video")
                 }
             }
 
@@ -370,53 +373,71 @@
                 VideoControl.play();
             }
 
+            function changeKeyboardShortcutText(mode) {
+                if (mode === "normal") {
+                    document.getElementById("keyboard-shortcut").innerHTML = '<h3>Esc - Close any box</h3>\n' +
+                        '                <h3>Q - Change mode between normal and video mode</h3>\n'
+                } else if (mode === "video") {
+                    document.getElementById("keyboard-shortcut").innerHTML = '<h3>Esc - Close any box</h3>\n' +
+                        '                <h3>Q - Change mode between normal and video mode</h3>\n' +
+                        '                <h3>P - Play or pause the video (Only available in video mode)</h3>\n' +
+                        '                <h3>M - Mute or unmute the video</h3>'
+                }
+            }
+
             var SocialTable = document.getElementById("social-table")
             var Menu = document.getElementById("menu")
             var Footer = document.getElementById("footer")
 
-            // function screenshotModeOn() {
-            //     // SocialTable.innerHTML = '<table>\n' +
-            //     //     '                    <tr>\n' +
-            //     //     '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.2s;"><a class="social" href="https://www.facebook.com/HelloYeew/" target="_blank"><i class="fab fa-facebook"></i></a></td>\n' +
-            //     //     '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.4s;"><a class="social" href="https://twitter.com/nonggummud" target="_blank"><i class="fab fa-twitter"></i></a></td>\n' +
-            //     //     '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.6s;"><a class="social" href="https://www.instagram.com/ttim.gummud/" target="_blank"><i class="fab fa-instagram"></i></a></td>\n' +
-            //     //     '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.8s;"><a class="social" href="https://github.com/HelloYeew" target="_blank"><i class="fab fa-github"></i></a></td>\n' +
-            //     //     '                    </tr>\n' +
-            //     //     '            </table>'
-            //     // Menu.innerHTML = ''
-            //     // Footer.innerHTML = ''
-            //     Menu.style.opacity = '0';
-            // }
-            //
-            // function screenshotModeOff() {
-            //     SocialTable.innerHTML = '<table>\n' +
-            //         '                    <tr>\n' +
-            //         '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.2s;"><a class="social" href="https://www.facebook.com/HelloYeew/" target="_blank"><i class="fab fa-facebook"></i></a></td>\n' +
-            //         '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.4s;"><a class="social" href="https://twitter.com/nonggummud" target="_blank"><i class="fab fa-twitter"></i></a></td>\n' +
-            //         '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.6s;"><a class="social" href="https://www.instagram.com/ttim.gummud/" target="_blank"><i class="fab fa-instagram"></i></a></td>\n' +
-            //         '                        <td onmouseover="mouseOver()" onclick="mouseSelect()" class="animated zoomIn" style="animation-delay:2.8s;"><a class="social" href="https://github.com/HelloYeew" target="_blank"><i class="fab fa-github"></i></a></td>\n' +
-            //         '                        <td onmouseover="mouseOver()" onclick="showsetting()" class="animated zoomIn" style="animation-delay:3.0s;"><a class="social"><i class="fas fa-cog"></i></a></td>\n' +
-            //         '                    </tr>\n' +
-            //         '            </table>'
-            //     Menu.innerHTML = '<a onclick="showabout()">about</a>\n' +
-            //         '            <a onclick="showwork()">work</a>\n' +
-            //         '            <a onclick="showcontact()">contact</a>'
-            //     Footer.innerHTML = 'Made by HelloYeew<br>Get some code from <a onclick=mouseSelect() href="https://imfunniee.github.io" target="_blank">imfunniee</a><br><a onclick=mouseSelect() href="https://github.com/HelloYeew/helloyeew.dev" target="_blank">GitHub Repositories</a>'
-            // }
 
             video.addEventListener('play', event => {
                 if (currentMode === 'video') {
                     document.getElementById("setting-play").innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-pause"></i></button>';
                 }
+                videoPlaying = true;
             });
             video.addEventListener('pause', event => {
                 if (currentMode === 'video') {
                     document.getElementById("setting-play").innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-play"></i></button>';
                 }
+                videoPlaying = false;
             });
             video.addEventListener('muted', event => {
                 document.getElementById("setting-mute").innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-up"></i></button>';
             });
+
+            document.addEventListener('keydown', (event) => {
+                const keyName = event.keyCode;
+
+                // press p to play or pause
+
+                if (keyName === 80 && videoPlaying === true && videoMode === true) {
+                    video.pause();
+                    videoControl();
+                } else if (keyName === 80 && videoPlaying === false && videoMode === true) {
+                    video.play();
+                    videoControl();
+                }
+
+                // press m to muted
+
+                if (keyName === 77 && video.muted) {
+                    video.muted = false;
+                    document.getElementById("setting-mute").innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-up"></i></button>';
+                    videoControl();
+                } else if (keyName === 77 && video.muted === false) {
+                    video.muted = true;
+                    document.getElementById("setting-mute").innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-mute"></i></button>';
+                    videoControl();
+                }
+
+                // press q to change mode
+
+                if (keyName === 81) {
+                    changeMode();
+                }
+
+            }, false);
         </script>
     </div>
         <div id="footer">

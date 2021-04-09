@@ -18,6 +18,7 @@ let currentBackground = 'yourname.gif';
 let currentVideo = 'ano-yume.mp4';
 let currentMode = 'normal';
 let videoMode = false;
+let videoPlaying = false;
 
 // TODO: Add variable to support the setting button afloat and not occur the other button event
 

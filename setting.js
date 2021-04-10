@@ -7,14 +7,21 @@ video.appendChild(source);
 // Set a default video route
 source.setAttribute('src', 'assets/background/ano-yume.mp4');
 
-// Get the button
+// Get the button and text id in setting container
+// Change mode button
 var mode_button = document.getElementById("videoModeButton");
+// Change background setting
+var warning_background = document.getElementById("warning-background");
 var background_button = document.getElementById("background-setting");
+// Video mode setting
+var warning_video = document.getElementById("warning-video");
+var video_setting_text = document.getElementById("video-setting-text");
+var age_notice_text = document.getElementById("age-notice")
 var playing_text = document.getElementById("now-playing");
-var warning_background = document.getElementById("warning-background")
-var warning_video = document.getElementById("warning-video")
-var play_setting = document.getElementById("setting-play")
-var mute_setting = document.getElementById("setting-mute")
+var play_setting = document.getElementById("setting-play");
+var mute_setting = document.getElementById("setting-mute");
+var keyboard_shortcut_text = document.getElementById("keyboard-shortcut");
+var video_change_button = document.getElementById("video-change")
 
 // Video control function (play/pause)
 function videoFunction() {
@@ -73,7 +80,7 @@ function changeMode() {
         showVideoButton()
         warning_background.innerHTML = "<i class=\"fas fa-exclamation-circle\"></i>You are in video mode. Please change to normal mode first.";
         warning_video.innerHTML = "";
-        
+
         if (video.muted) {
             mute_setting.innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-mute"></i></button>';
         } else {
@@ -122,28 +129,28 @@ function showBackgroundButton() {
 // Hide video setting when change to normal mode (Make it blank and put up warn message)
 function hideVideoButton() {
     console.log("hideVideoButton() [setting.js]")
-    document.getElementById("now-playing").innerHTML = ""
+    playing_text.innerHTML = ""
     play_setting.innerHTML = ''
     mute_setting.innerHTML = ''
-    document.getElementById("video-setting-text").innerHTML = ''
-    document.getElementById("video-change").innerHTML = ""
-    document.getElementById("age-notice").innerHTML = ""
+    video_setting_text.innerHTML = ''
+    video_change_button.innerHTML = ""
+    age_notice_text.innerHTML = ""
 }
 
 // Show video setting when change to video mode (show everything in video setting)
 function showVideoButton() {
     console.log("showVideoButton() [setting.js]")
-    document.getElementById("now-playing").innerHTML = "Now Playing : None"
+    playing_text.innerHTML = "Now Playing : None"
     play_setting.innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-play"></i></button>'
     mute_setting.innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-mute"></i></button>'
-    document.getElementById("video-setting-text").innerHTML = 'Click to change video'
-    document.getElementById("video-change").innerHTML = "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('ano-yume.mp4')>あの夢をなぞって</button>" +
+    video_setting_text.innerHTML = 'Click to change video'
+    video_change_button.innerHTML = "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('ano-yume.mp4')>あの夢をなぞって</button>" +
         "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('jumping-heart.mp4')>青空Jumping Heart (OP)</button>" +
         "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('mopemope.mp4')>もぺもぺ</button>" +
         "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('alicization.mp4')>ADAMAS (OP)</button>" +
         "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('umaru.mp4')>かくしん的☆めたまるふぉ～ぜっ！(OP)</button>"
     if (currentVideo === "mopemope.mp4") {
-        document.getElementById("age-notice").innerHTML = '<i class=\"fas fa-exclamation-circle\"></i>This video is NOT for children!'
+        age_notice_text.innerHTML = '<i class=\"fas fa-exclamation-circle\"></i>This video is NOT for children!'
     }
     nowPlayingText()
 }
@@ -160,7 +167,7 @@ function changeVideo(filename) {
     video.play();
     if (currentVideo === "mopemope.mp4") {
         console.log('if (currentVideo === "mopemope.mp4") in changeVideo(filename) [setting.js]')
-        document.getElementById("age-notice").innerHTML = '<i class=\"fas fa-exclamation-circle\"></i>This video is NOT for children!'
+        age_notice_text.innerHTML = '<i class=\"fas fa-exclamation-circle\"></i>This video is NOT for children!'
     }
 }
 
@@ -191,10 +198,10 @@ function nowPlayingText() {
     // Warning text target to `age-notice`
     if (currentVideo === 'mopemope.mp4') {
         console.log("if (currentVideo === 'mopemope.mp4') in nowPlayingText() [setting.js]")
-        document.getElementById("age-notice").innerHTML = '<i class=\"fas fa-exclamation-circle\"></i>This video is NOT for children!'
+        age_notice_text.innerHTML = '<i class=\"fas fa-exclamation-circle\"></i>This video is NOT for children!'
     } else {
         console.log("else in nowPlayingText() [setting.js]")
-        document.getElementById("age-notice").innerHTML = ''
+        age_notice_text.innerHTML = ''
     }
 }
 
@@ -202,11 +209,11 @@ function nowPlayingText() {
 function changeKeyboardShortcutText(mode) {
     if (mode === "normal") {
         console.log('if (mode === "normal") in changeKeyboardShortcutText(mode) [setting.js]')
-        document.getElementById("keyboard-shortcut").innerHTML = '<h3>Esc - Close any box</h3>\n' +
+        keyboard_shortcut_text.innerHTML = '<h3>Esc - Close any box</h3>\n' +
             '                <h3>Q - Change mode between normal and video mode</h3>\n'
     } else if (mode === "video") {
         console.log('else if (mode === "video") in changeKeyboardShortcutText(mode) [setting.js]')
-        document.getElementById("keyboard-shortcut").innerHTML = '<h3>Esc - Close any box</h3>\n' +
+        keyboard_shortcut_text.innerHTML = '<h3>Esc - Close any box</h3>\n' +
             '                <h3>Q - Change mode between normal and video mode</h3>\n' +
             '                <h3>P - Play or pause the video</h3>\n' +
             '                <h3>M - Mute or unmute the video</h3>'
@@ -229,7 +236,6 @@ video.addEventListener('pause', event => {
 video.addEventListener('muted', event => {
     mute_setting.innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-up"></i></button>';
 });
-
 document.addEventListener('keydown', (event) => {
     const keyName = event.keyCode;
 

@@ -1,3 +1,5 @@
+// Sound variable
+
 let WaveIn = new Audio("assets/sound/enter.wav");
 let WaveOut = new Audio("assets/sound/back.wav");
 let Hover = new Audio("assets/sound/hover.wav");
@@ -8,6 +10,9 @@ let SettingOnClick = new Audio("assets/sound/settings-noclick.wav");
 let SettingSelect = new Audio("assets/sound/settings-select.wav");
 let Error = new Audio("assets/sound/error.wav");
 let NowPlaying = new Audio("assets/sound/now-playing.wav");
+let ConfirmSelection = new Audio("assets/sound/confirm-selection.wav");
+let ScratchDisc = new Audio("assets/sound/scratch-disc.wav");
+let VideoControl = new Audio("assets/sound/video-control.wav");
 
 
 let openWork = false;
@@ -119,7 +124,7 @@ setTimeout(function(){
     },1000);
 },1500);
 
-// Mouse over sound
+// Sound effect function
 function mouseOver() {
     Hover.play();
 }
@@ -146,6 +151,18 @@ function errorSound() {
 
 function nowPlayingSound() {
     NowPlaying.play();
+}
+
+function confirmSelection() {
+    ConfirmSelection.play();
+}
+
+function scratchDisc() {
+    ScratchDisc.play();
+}
+
+function videoControl() {
+    VideoControl.play();
 }
 
 

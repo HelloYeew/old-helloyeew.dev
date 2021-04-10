@@ -1,3 +1,5 @@
+// Sound variable
+
 let WaveIn = new Audio("assets/sound/enter.wav");
 let WaveOut = new Audio("assets/sound/back.wav");
 let Hover = new Audio("assets/sound/hover.wav");
@@ -8,6 +10,9 @@ let SettingOnClick = new Audio("assets/sound/settings-noclick.wav");
 let SettingSelect = new Audio("assets/sound/settings-select.wav");
 let Error = new Audio("assets/sound/error.wav");
 let NowPlaying = new Audio("assets/sound/now-playing.wav");
+let ConfirmSelection = new Audio("assets/sound/confirm-selection.wav");
+let ScratchDisc = new Audio("assets/sound/scratch-disc.wav");
+let VideoControl = new Audio("assets/sound/video-control.wav");
 
 
 let openWork = false;
@@ -50,10 +55,10 @@ function fetchAndCache(soundFileUrl, cache) {
                     return networkResponse;
                 });
         });
-    sayWelcome()
 }
 
 function showabout(){
+    console.log("showabout() [index.js]")
     WaveIn.play();
     openAbout = true;
     $("#about_container").css("display","inherit");
@@ -63,6 +68,7 @@ function showabout(){
     },800);
 }
 function closeabout(){
+    console.log("closeabout() [index.js]")
     WaveOut.play();
     $("#about_container").addClass("animated slideOutLeft");
     setTimeout(function(){
@@ -71,6 +77,7 @@ function closeabout(){
     },800);
 }
 function showwork(){
+    console.log("showwork() [index.js]")
     WaveIn.play();
     openWork = true;
     $("#work_container").css("display","inherit");
@@ -80,6 +87,7 @@ function showwork(){
     },800);
 }
 function closework(){
+    console.log("closework() [index.js]")
     WaveOut.play();
     $("#work_container").addClass("animated slideOutRight");
     setTimeout(function(){
@@ -88,6 +96,7 @@ function closework(){
     },800);
 }
 function showcontact(){
+    console.log("showcontact() [index.js]")
     WaveIn.play();
     openContact = true;
     $("#contact_container").css("display","inherit");
@@ -97,6 +106,7 @@ function showcontact(){
     },800);
 }
 function closecontact(){
+    console.log("closecontact() [index.js]")
     WaveOut.play();
     $("#contact_container").addClass("animated slideOutDown");
     setTimeout(function(){
@@ -104,7 +114,6 @@ function closecontact(){
         $("#contact_container").css("display","none");
     },800);
 }
-
 
 setTimeout(function(){
     $("#loading").addClass("animated fadeOut");
@@ -119,38 +128,79 @@ setTimeout(function(){
     },1000);
 },1500);
 
-// Mouse over sound
+// Sound effect function
 function mouseOver() {
+    console.log("mouseOver() [index.js]")
     Hover.play();
 }
 
 function mouseSelect() {
+    console.log("mouseSelect() [index.js]")
     Select.play();
 }
 
 function sayWelcome() {
+    console.log("sayWelcome() [index.js]")
     Welcome.play();
 }
 
 function settingMouseOver() {
+    console.log("settingMouseOver() [index.js]")
     SettingOnClick.play();
 }
 
 function settingSelect() {
+    console.log("settingSelect() [index.js]")
     SettingSelect.play();
 }
 
 function errorSound() {
+    console.log("errorSound() [index.js]")
     Error.play();
 }
 
 function nowPlayingSound() {
+    console.log("nowPlayingSound() [index.js]")
     NowPlaying.play();
 }
 
+function confirmSelection() {
+    console.log("confirmSelection() [index.js]")
+    ConfirmSelection.play();
+}
+
+function scratchDisc() {
+    console.log("scratchDisc() [index.js]")
+    ScratchDisc.play();
+}
+
+function videoControl() {
+    console.log("videoControl() [index.js]")
+    VideoControl.play();
+}
+
+function changeBackground(filename) {
+    console.log("changeBackground(" + filename + ") [index.js]")
+    if (videoMode === true) {
+        errorSound();
+        document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/black.svg") center center';
+    } else {
+        settingSelect();
+        document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/' + filename + '") center center';
+        currentBackground = filename;
+    }
+}
+
+function removeBackground() {
+    console.log("removeBackground() [index.js]")
+    settingSelect();
+    document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/black.svg") center center';
+}
 
 document.addEventListener('keydown', (event) => {
     const keyName = event.keyCode;
+
+    // Press ESC to close container
 
     if (keyName === 27 && openWork === true) {
         closework();
@@ -166,20 +216,4 @@ document.addEventListener('keydown', (event) => {
         openSetting = false;
     }
 }, false);
-
-function changeBackground(filename) {
-    if (videoMode === true) {
-        errorSound();
-        document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/black.svg") center center';
-    } else {
-        settingSelect();
-        document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/' + filename + '") center center';
-        currentBackground = filename;
-    }
-}
-
-function removeBackground() {
-    settingSelect();
-    document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/black.svg") center center';
-}
 

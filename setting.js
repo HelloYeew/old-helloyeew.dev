@@ -51,7 +51,6 @@ function videoFunction() {
 function changeMode() {
     if (videoMode === true) {
         console.log("if (videoMode === true) in changeMode() [setting.js]")
-        console.log("-------")
         currentMode = 'normal';
         scratchDisc();
         videoMode = false;
@@ -70,7 +69,6 @@ function changeMode() {
         console.log("-------")
     } else {
         console.log("else in changeMode() [setting.js]")
-        console.log("-------")
         currentMode = 'video';
         scratchDisc();
         removeBackground();
@@ -93,7 +91,6 @@ function changeMode() {
         changeKeyboardShortcutText("video")
         console.log("-------")
     }
-    console.log("-------")
 }
 
 // Video sound setting

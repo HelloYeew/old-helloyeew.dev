@@ -66,7 +66,6 @@ function changeMode() {
         warning_video.innerHTML = "<i class=\"fas fa-exclamation-circle\"></i>You are in normal mode. Please change to video mode first.";
         background_button.disabled = false;
         changeKeyboardShortcutText("normal")
-        console.log("-------")
     } else {
         console.log("else in changeMode() [setting.js]")
         currentMode = 'video';
@@ -89,8 +88,8 @@ function changeMode() {
             mute_setting.innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-up"></i></button>';
         }
         changeKeyboardShortcutText("video")
-        console.log("-------")
     }
+    console.log("-------")
 }
 
 // Video sound setting

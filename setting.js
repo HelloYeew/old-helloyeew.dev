@@ -44,6 +44,7 @@ function videoFunction() {
         video.pause();
         play_setting.innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-play"></i></button>'
     }
+    console.log("-------")
 }
 
 // Change mode between normal and video
@@ -65,6 +66,7 @@ function changeMode() {
         warning_video.innerHTML = "<i class=\"fas fa-exclamation-circle\"></i>You are in normal mode. Please change to video mode first.";
         background_button.disabled = false;
         changeKeyboardShortcutText("normal")
+        console.log("-------")
     } else {
         console.log("else in changeMode() [setting.js]")
         currentMode = 'video';
@@ -87,6 +89,7 @@ function changeMode() {
             mute_setting.innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-up"></i></button>';
         }
         changeKeyboardShortcutText("video")
+        console.log("-------")
     }
 }
 
@@ -103,6 +106,7 @@ function videoSound() {
         video.muted = true;
         mute_setting.innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-mute"></i></button>'
     }
+    console.log("-------")
 }
 
 // Hide background setting when change to video mode (Make it blank and put up warn message)
@@ -169,6 +173,7 @@ function changeVideo(filename) {
         console.log('if (currentVideo === "mopemope.mp4") in changeVideo(filename) [setting.js]')
         age_notice_text.innerHTML = '<i class=\"fas fa-exclamation-circle\"></i>This video is NOT for children!'
     }
+    console.log("-------")
 }
 
 // Change 'Now Playing:' text, just call this function and it will change

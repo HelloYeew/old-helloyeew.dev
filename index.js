@@ -214,15 +214,19 @@ document.addEventListener('keydown', (event) => {
     // Press ESC to close container
 
     if (keyName === 27 && openWork === true) {
+        console.log("% close windows from keydown ESC [index.js]");
         closework();
         openWork = false;
     } else if (keyName === 27 && openContact === true) {
+        console.log("% close windows from keydown ESC [index.js]");
         closecontact();
         openContact = false;
     } else if (keyName === 27 && openAbout === true) {
+        console.log("% close windows from keydown ESC [index.js]");
         closeabout();
         openAbout = false;
     } else if (keyName === 27 && openSetting === true) {
+        console.log("% close windows from keydown ESC [index.js]");
         closesetting()
         openSetting = false;
     }

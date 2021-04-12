@@ -14,18 +14,19 @@ let ConfirmSelection = new Audio("assets/sound/confirm-selection.wav");
 let ScratchDisc = new Audio("assets/sound/scratch-disc.wav");
 let VideoControl = new Audio("assets/sound/video-control.wav");
 
-
 let openWork = false;
 let openContact = false;
 let openAbout = false;
 let openSetting = false;
-let currentBackground = 'yourname.gif';
-let currentVideo = 'ano-yume.mp4';
+let currentBackground = 'yourname.gif'; // This variable must be same as default background
+let currentVideo = 'ano-yume.mp4'; // This variable must be same as default video
 let currentMode = 'normal';
 let videoMode = false;
 let videoPlaying = false;
 
 // TODO: Add variable to support the setting button afloat and not occur the other button event
+// TODO: Update sound if it's better?
+// TODO: Add video time on player
 
 const soundFileUrls = [
     'assets/enter.wav',

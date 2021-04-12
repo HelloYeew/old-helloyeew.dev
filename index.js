@@ -249,7 +249,7 @@ function checkAndOpen(target_windows) {
         }
     } else if (openSetting === true) {
         // This condition is specific for setting button that can click to both close and open setting windows
-        console.log("(openWork === false && openContact === false && openAbout === false && openSetting === true) => Close " + target_windows + " by its function")
+        console.log("(openWork === false && openContact === false && openAbout === false && openSetting === true) => Close setting by its function")
         showsetting()
     } else {
         console.log("(openWork === " + openWork + " && openContact === " + openContact + " && openAbout === " + openAbout + " && openSetting === " + openSetting + ") => Not open " + target_windows)

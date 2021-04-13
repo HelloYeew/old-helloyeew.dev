@@ -26,8 +26,8 @@ let currentMode = 'normal';
 let videoMode = false;
 let videoPlaying = false;
 
-// TODO: Update sound if it's better?
 // TODO: Add video time on player
+// TODO: Change color
 
 const soundFileUrls = [
     'assets/enter.wav',

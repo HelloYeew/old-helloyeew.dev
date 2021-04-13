@@ -1,6 +1,6 @@
 // Get the video
-var video = document.getElementById("videoBackground");
-var source = document.createElement('source');
+let video = document.getElementById("videoBackground");
+let source = document.createElement('source');
 
 video.appendChild(source);
 
@@ -9,19 +9,20 @@ source.setAttribute('src', 'assets/background/ano-yume.mp4');
 
 // Get the button and text id in setting container
 // Change mode button
-var mode_button = document.getElementById("videoModeButton");
+let mode_button = document.getElementById("videoModeButton");
+let current_mode_text = document.getElementById("current_mode")
 // Change background setting
-var warning_background = document.getElementById("warning-background");
-var background_button = document.getElementById("background-setting");
+let warning_background = document.getElementById("warning-background");
+let background_button = document.getElementById("background-setting");
 // Video mode setting
-var warning_video = document.getElementById("warning-video");
-var video_setting_text = document.getElementById("video-setting-text");
-var age_notice_text = document.getElementById("age-notice")
-var playing_text = document.getElementById("now-playing");
-var play_setting = document.getElementById("setting-play");
-var mute_setting = document.getElementById("setting-mute");
-var keyboard_shortcut_text = document.getElementById("keyboard-shortcut");
-var video_change_button = document.getElementById("video-change")
+let warning_video = document.getElementById("warning-video");
+let video_setting_text = document.getElementById("video-setting-text");
+let age_notice_text = document.getElementById("age-notice")
+let playing_text = document.getElementById("now-playing");
+let play_setting = document.getElementById("setting-play");
+let mute_setting = document.getElementById("setting-mute");
+let keyboard_shortcut_text = document.getElementById("keyboard-shortcut");
+let video_change_button = document.getElementById("video-change")
 
 // Video control function (play/pause)
 function videoFunction() {
@@ -44,6 +45,7 @@ function videoFunction() {
         video.pause();
         play_setting.innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-play"></i></button>'
     }
+    console.log("-------")
 }
 
 // Change mode between normal and video
@@ -57,7 +59,8 @@ function changeMode() {
         hideVideoButton()
         video.style.opacity = '0';
         changeBackground(currentBackground)
-        mode_button.innerHTML = "Video Mode"
+        current_mode_text.innerHTML = 'Current Mode : Normal Mode';
+        mode_button.innerHTML = "Change to Video Mode"
         warning_background.innerHTML = "";
         if (video.play) {
             video.pause();
@@ -65,6 +68,7 @@ function changeMode() {
         warning_video.innerHTML = "<i class=\"fas fa-exclamation-circle\"></i>You are in normal mode. Please change to video mode first.";
         background_button.disabled = false;
         changeKeyboardShortcutText("normal")
+        console.log("-------")
     } else {
         console.log("else in changeMode() [setting.js]")
         currentMode = 'video';
@@ -72,7 +76,8 @@ function changeMode() {
         removeBackground();
         nowPlayingText()
         video.style.opacity = '0.4';
-        mode_button.innerHTML = "Normal Mode"
+        current_mode_text.innerHTML = 'Current Mode : Video Mode';
+        mode_button.innerHTML = "Change to Normal Mode"
         video.play();
         background_button.disabled = true;
         videoMode = true;
@@ -87,12 +92,14 @@ function changeMode() {
             mute_setting.innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-up"></i></button>';
         }
         changeKeyboardShortcutText("video")
+        console.log("-------")
     }
 }
 
 // Video sound setting
 function videoSound() {
     console.log("videoSound() [setting.js]")
+    console.log("-------")
     videoControl();
     if (video.muted) {
         console.log("if (video.muted) in videoSound() [setting.js]")
@@ -158,6 +165,7 @@ function showVideoButton() {
 // Change video source, load resource and start playing a new video
 function changeVideo(filename) {
     console.log("changeVideo(filename) [setting.js]")
+    console.log("-------")
     confirmSelection()
     video.pause();
     currentVideo = filename;
@@ -222,18 +230,21 @@ function changeKeyboardShortcutText(mode) {
 
 // EventListener
 video.addEventListener('play', event => {
+    console.log("% change videoButton text to pause symbol by video.addEventListener('play') [setting.js]");
     if (currentMode === 'video') {
         play_setting.innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-pause"></i></button>';
     }
     videoPlaying = true;
 });
 video.addEventListener('pause', event => {
+    console.log("% change videoButton text to play symbol by video.addEventListener('pause') [setting.js]");
     if (currentMode === 'video') {
         play_setting.innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-play"></i></button>';
     }
     videoPlaying = false;
 });
 video.addEventListener('muted', event => {
+    console.log("% change VideoMuted text to volumeup symbol by video.addEventListener('muted') [setting.js]");
     mute_setting.innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-up"></i></button>';
 });
 document.addEventListener('keydown', (event) => {
@@ -242,9 +253,11 @@ document.addEventListener('keydown', (event) => {
     // press p to play or pause
 
     if (keyName === 80 && videoPlaying === true && videoMode === true) {
+        console.log("% videoControl() from keydown P [setting.js]");
         video.pause();
         videoControl();
     } else if (keyName === 80 && videoPlaying === false && videoMode === true) {
+        console.log("% videoControl() from keydown P [setting.js]");
         video.play();
         videoControl();
     }
@@ -252,12 +265,12 @@ document.addEventListener('keydown', (event) => {
     // press m to muted
 
     if (keyName === 77 && video.muted && videoMode === true) {
-        console.log("if (keyName === 77 && video.muted) in setting.js")
+        console.log("% videoControl() from keydown M [setting.js]")
         video.muted = false;
         mute_setting.innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-up"></i></button>';
         videoControl();
     } else if (keyName === 77 && video.muted === false && videoMode === true) {
-        console.log("else if (keyName === 77 && video.muted === false) in setting.js")
+        console.log("% videoControl() from keydown M [setting.js]")
         video.muted = true;
         mute_setting.innerHTML = '<button class="btn_one" id="VideoMuted" onmouseover=settingMouseOver() onclick=videoSound()><i class="fas fa-volume-mute"></i></button>';
         videoControl();
@@ -266,6 +279,7 @@ document.addEventListener('keydown', (event) => {
     // press q to change mode
 
     if (keyName === 81) {
+        console.log("% changeMode() from keydown q [setting.js]")
         changeMode();
     }
 

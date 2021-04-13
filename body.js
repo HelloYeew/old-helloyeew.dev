@@ -1,9 +1,11 @@
 function showsetting(){
     if (openSetting === true) {
         console.log("Setting closed by showsetting() [body.js]")
+        console.log("-------")
         closesetting()
     } else {
         console.log("Setting open by showsetting() [body.js]")
+        console.log("-------")
         SettingIn.play();
         openSetting = true;
         $("#setting_container").css("display","inherit");
@@ -16,6 +18,7 @@ function showsetting(){
 }
 function closesetting(){
     console.log("Setting closed by closesetting() [body.js]")
+    console.log("-------")
     WaveOut.play();
     $("#setting_container").addClass("animated slideOutLeft");
     setTimeout(function(){

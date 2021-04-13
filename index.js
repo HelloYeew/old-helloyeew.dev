@@ -14,18 +14,19 @@ let ConfirmSelection = new Audio("assets/sound/confirm-selection.wav");
 let ScratchDisc = new Audio("assets/sound/scratch-disc.wav");
 let VideoControl = new Audio("assets/sound/video-control.wav");
 
-
 let openWork = false;
 let openContact = false;
 let openAbout = false;
 let openSetting = false;
-let currentBackground = 'yourname.gif';
-let currentVideo = 'ano-yume.mp4';
+let currentBackground = 'yourname.gif'; // This variable must be same as default background
+let currentVideo = 'ano-yume.mp4'; // This variable must be same as default video
 let currentMode = 'normal';
 let videoMode = false;
 let videoPlaying = false;
 
 // TODO: Add variable to support the setting button afloat and not occur the other button event
+// TODO: Update sound if it's better?
+// TODO: Add video time on player
 
 const soundFileUrls = [
     'assets/enter.wav',
@@ -59,6 +60,7 @@ function fetchAndCache(soundFileUrl, cache) {
 
 function showabout(){
     console.log("showabout() [index.js]")
+    console.log("-------")
     WaveIn.play();
     openAbout = true;
     $("#about_container").css("display","inherit");
@@ -69,7 +71,9 @@ function showabout(){
 }
 function closeabout(){
     console.log("closeabout() [index.js]")
+    console.log("-------")
     WaveOut.play();
+    openAbout = false;
     $("#about_container").addClass("animated slideOutLeft");
     setTimeout(function(){
         $("#about_container").removeClass("animated slideOutLeft");
@@ -78,6 +82,7 @@ function closeabout(){
 }
 function showwork(){
     console.log("showwork() [index.js]")
+    console.log("-------")
     WaveIn.play();
     openWork = true;
     $("#work_container").css("display","inherit");
@@ -88,7 +93,9 @@ function showwork(){
 }
 function closework(){
     console.log("closework() [index.js]")
+    console.log("-------")
     WaveOut.play();
+    openWork = false;
     $("#work_container").addClass("animated slideOutRight");
     setTimeout(function(){
         $("#work_container").removeClass("animated slideOutRight");
@@ -97,6 +104,7 @@ function closework(){
 }
 function showcontact(){
     console.log("showcontact() [index.js]")
+    console.log("-------")
     WaveIn.play();
     openContact = true;
     $("#contact_container").css("display","inherit");
@@ -107,7 +115,9 @@ function showcontact(){
 }
 function closecontact(){
     console.log("closecontact() [index.js]")
+    console.log("-------")
     WaveOut.play();
+    openContact = false;
     $("#contact_container").addClass("animated slideOutDown");
     setTimeout(function(){
         $("#contact_container").removeClass("animated slideOutDown");
@@ -130,52 +140,52 @@ setTimeout(function(){
 
 // Sound effect function
 function mouseOver() {
-    console.log("mouseOver() [index.js]")
+    console.log("- mouseOver() [index.js]")
     Hover.play();
 }
 
 function mouseSelect() {
-    console.log("mouseSelect() [index.js]")
+    console.log("- mouseSelect() [index.js]")
     Select.play();
 }
 
 function sayWelcome() {
-    console.log("sayWelcome() [index.js]")
+    console.log("- sayWelcome() [index.js]")
     Welcome.play();
 }
 
 function settingMouseOver() {
-    console.log("settingMouseOver() [index.js]")
+    console.log("- settingMouseOver() [index.js]")
     SettingOnClick.play();
 }
 
 function settingSelect() {
-    console.log("settingSelect() [index.js]")
+    console.log("- settingSelect() [index.js]")
     SettingSelect.play();
 }
 
 function errorSound() {
-    console.log("errorSound() [index.js]")
+    console.log("- errorSound() [index.js]")
     Error.play();
 }
 
 function nowPlayingSound() {
-    console.log("nowPlayingSound() [index.js]")
+    console.log("- nowPlayingSound() [index.js]")
     NowPlaying.play();
 }
 
 function confirmSelection() {
-    console.log("confirmSelection() [index.js]")
+    console.log("- confirmSelection() [index.js]")
     ConfirmSelection.play();
 }
 
 function scratchDisc() {
-    console.log("scratchDisc() [index.js]")
+    console.log("- scratchDisc() [index.js]")
     ScratchDisc.play();
 }
 
 function videoControl() {
-    console.log("videoControl() [index.js]")
+    console.log("- videoControl() [index.js]")
     VideoControl.play();
 }
 
@@ -189,6 +199,7 @@ function changeBackground(filename) {
         document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/' + filename + '") center center';
         currentBackground = filename;
     }
+    console.log("-------")
 }
 
 function removeBackground() {
@@ -203,17 +214,46 @@ document.addEventListener('keydown', (event) => {
     // Press ESC to close container
 
     if (keyName === 27 && openWork === true) {
+        console.log("% close windows from keydown ESC [index.js]");
         closework();
         openWork = false;
     } else if (keyName === 27 && openContact === true) {
+        console.log("% close windows from keydown ESC [index.js]");
         closecontact();
         openContact = false;
     } else if (keyName === 27 && openAbout === true) {
+        console.log("% close windows from keydown ESC [index.js]");
         closeabout();
         openAbout = false;
     } else if (keyName === 27 && openSetting === true) {
+        console.log("% close windows from keydown ESC [index.js]");
         closesetting()
         openSetting = false;
     }
 }, false);
+
+// Function set so you can open only 1 real windows
+
+function checkAndOpen(target_windows) {
+    if (openWork === false && openContact === false && openAbout === false && openSetting === false) {
+        console.log("(openWork === false && openContact === false && openAbout === false && openSetting === false) => Open " + target_windows)
+        console.log("-------")
+        if (target_windows === "work") {
+            showwork();
+        } else if (target_windows === "contact") {
+            showcontact();
+        } else if (target_windows === "about") {
+            showabout();
+        } else if (target_windows === "setting") {
+            showsetting();
+        }
+    } else if (openSetting === true) {
+        // This condition is specific for setting button that can click to both close and open setting windows
+        console.log("(openWork === false && openContact === false && openAbout === false && openSetting === true) => Close setting by its function (target_windows = " + target_windows + ")")
+        showsetting()
+    } else {
+        console.log("(openWork === " + openWork + " && openContact === " + openContact + " && openAbout === " + openAbout + " && openSetting === " + openSetting + ") => Not open " + target_windows)
+        console.log("-------")
+    }
+}
 

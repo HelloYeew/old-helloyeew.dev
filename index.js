@@ -24,7 +24,6 @@ let currentMode = 'normal';
 let videoMode = false;
 let videoPlaying = false;
 
-// TODO: Add variable to support the setting button afloat and not occur the other button event
 // TODO: Update sound if it's better?
 // TODO: Add video time on player
 

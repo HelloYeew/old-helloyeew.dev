@@ -1,6 +1,6 @@
 // Get the video
-var video = document.getElementById("videoBackground");
-var source = document.createElement('source');
+let video = document.getElementById("videoBackground");
+let source = document.createElement('source');
 
 video.appendChild(source);
 
@@ -9,19 +9,20 @@ source.setAttribute('src', 'assets/background/ano-yume.mp4');
 
 // Get the button and text id in setting container
 // Change mode button
-var mode_button = document.getElementById("videoModeButton");
+let mode_button = document.getElementById("videoModeButton");
+let current_mode_text = document.getElementById("current_mode")
 // Change background setting
-var warning_background = document.getElementById("warning-background");
-var background_button = document.getElementById("background-setting");
+let warning_background = document.getElementById("warning-background");
+let background_button = document.getElementById("background-setting");
 // Video mode setting
-var warning_video = document.getElementById("warning-video");
-var video_setting_text = document.getElementById("video-setting-text");
-var age_notice_text = document.getElementById("age-notice")
-var playing_text = document.getElementById("now-playing");
-var play_setting = document.getElementById("setting-play");
-var mute_setting = document.getElementById("setting-mute");
-var keyboard_shortcut_text = document.getElementById("keyboard-shortcut");
-var video_change_button = document.getElementById("video-change")
+let warning_video = document.getElementById("warning-video");
+let video_setting_text = document.getElementById("video-setting-text");
+let age_notice_text = document.getElementById("age-notice")
+let playing_text = document.getElementById("now-playing");
+let play_setting = document.getElementById("setting-play");
+let mute_setting = document.getElementById("setting-mute");
+let keyboard_shortcut_text = document.getElementById("keyboard-shortcut");
+let video_change_button = document.getElementById("video-change")
 
 // Video control function (play/pause)
 function videoFunction() {
@@ -58,7 +59,8 @@ function changeMode() {
         hideVideoButton()
         video.style.opacity = '0';
         changeBackground(currentBackground)
-        mode_button.innerHTML = "Video Mode"
+        current_mode_text.innerHTML = 'Current Mode : Normal Mode';
+        mode_button.innerHTML = "Change to Video Mode"
         warning_background.innerHTML = "";
         if (video.play) {
             video.pause();
@@ -74,7 +76,8 @@ function changeMode() {
         removeBackground();
         nowPlayingText()
         video.style.opacity = '0.4';
-        mode_button.innerHTML = "Normal Mode"
+        current_mode_text.innerHTML = 'Current Mode : Video Mode';
+        mode_button.innerHTML = "Change to Normal Mode"
         video.play();
         background_button.disabled = true;
         videoMode = true;

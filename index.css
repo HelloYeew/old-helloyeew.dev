@@ -213,6 +213,12 @@ video {
 #used div:hover {
     cursor:text;
 }
+#used2:hover {
+    cursor:text;
+}
+#used2 div:hover {
+    cursor:text;
+}
 .container h1 {
     font-size:60px;
     text-decoration:underline;
@@ -330,6 +336,20 @@ video {
     cursor:text;
 }
 #used div:hover {
+    cursor:text;
+}
+#used2 div{
+    font-size:14px !important;
+    display:inline-block;
+    padding:8px 10px;
+    border:2px solid #fff;
+    margin:0px 10px;
+    border-radius:50px;
+}
+#used2:hover {
+    cursor:text;
+}
+#used2 div:hover {
     cursor:text;
 }
 .setting-container h1 {
@@ -490,4 +510,18 @@ video {
 }
 #favicon {
     border-radius: 50%;
+}
+#inner_div table{
+    width:100%;
+}
+#inner_div table tr td{
+    font-weight:bold;
+}
+#inner_table tr td{
+    padding:10px 20px !important;
+}
+#address {
+    position:relative;
+    top:-25px;
+    left:30px;
 }

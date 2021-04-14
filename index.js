@@ -13,6 +13,8 @@ let NowPlaying = new Audio("assets/sound/now-playing.wav");
 let ConfirmSelection = new Audio("assets/sound/confirm-selection.wav");
 let ScratchDisc = new Audio("assets/sound/scratch-disc.wav");
 let VideoControl = new Audio("assets/sound/video-control.wav");
+let InPageHover = new Audio("assets/sound/in-page-hover.wav");
+let InPageSelect = new Audio("assets/sound/in-page-select.wav");
 
 let openWork = false;
 let openContact = false;
@@ -24,9 +26,8 @@ let currentMode = 'normal';
 let videoMode = false;
 let videoPlaying = false;
 
-// TODO: Add variable to support the setting button afloat and not occur the other button event
-// TODO: Update sound if it's better?
 // TODO: Add video time on player
+// TODO: Change color
 
 const soundFileUrls = [
     'assets/enter.wav',
@@ -199,6 +200,7 @@ function changeBackground(filename) {
         document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/' + filename + '") center center';
         currentBackground = filename;
     }
+    // TODO: Support if we don't have that file (This support typo or if someone play something with JS in console)
     console.log("-------")
 }
 

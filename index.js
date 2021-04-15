@@ -28,6 +28,7 @@ let videoPlaying = false;
 
 // TODO: Add video time on player
 // TODO: Change color
+// TODO: Change some video (Update)
 
 const soundFileUrls = [
     'assets/enter.wav',

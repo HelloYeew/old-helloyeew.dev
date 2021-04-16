@@ -30,11 +30,21 @@ let videoPlaying = false;
 // TODO: Change color
 
 const soundFileUrls = [
-    'assets/enter.wav',
-    'assets/back.wav',
-    'assets/hover.wav',
-    'assets/select.wav',
-    'assets/welcome.wav'
+    'assets/sound/enter.wav',
+    'assets/sound/back.wav',
+    'assets/sound/hover.wav',
+    'assets/sound/select.wav',
+    'assets/sound/welcome.wav',
+    'sound/sound/settings-in.wav',
+    'assets/sound/settings-noclick.wav',
+    'assets/sound/settings-select.wav',
+    'assets/sound/error.wav',
+    'assets/sound/now-playing.wav',
+    'assets/sound/confirm-selection.wav',
+    'assets/sound/scratch-disc.wav',
+    'assets/sound/video-control.wav',
+    'assets/sound/in-page-hover.wav',
+    'assets/sound/in-page-select.wav'
 ];
 
 // Sound pre-cache for better experience in website

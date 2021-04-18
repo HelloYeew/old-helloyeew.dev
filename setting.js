@@ -154,7 +154,7 @@ function showVideoButton() {
     video_change_button.innerHTML = "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('ano-yume.mp4')>あの夢をなぞって</button>" +
         "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('jumping-heart.mp4')>青空Jumping Heart (OP)</button>" +
         "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('mopemope.mp4')>もぺもぺ</button>" +
-        "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('alicization.mp4')>ADAMAS (OP)</button>" +
+        "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('takagi-san.mp4')>からかい上手の高木さん２ (OP)</button>" +
         "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('umaru.mp4')>かくしん的☆めたまるふぉ～ぜっ！(OP)</button>"
     if (currentVideo === "mopemope.mp4") {
         age_notice_text.innerHTML = '<i class=\"fas fa-exclamation-circle\"></i>This video is NOT for children!'
@@ -192,12 +192,12 @@ function nowPlayingText() {
     } else if (currentVideo === 'mopemope.mp4') {
         console.log("else if (currentVideo === 'mopemope.mp4') in nowPlayingText() [setting.js]")
         playing_text.innerHTML = "Now Playing : もぺもぺ"
-    } else if (currentVideo === "alicization.mp4") {
-        console.log("else if (currentVideo === 'alicization.mp4') in nowPlayingText() [setting.js]")
-        playing_text.innerHTML = "Now Playing : ADAMAS (OP)"
     } else if (currentVideo === 'umaru.mp4') {
         console.log("else if (currentVideo === 'umaru.mp4') in nowPlayingText() [setting.js]")
         playing_text.innerHTML = "Now Playing : かくしん的☆めたまるふぉ～ぜっ！(OP)"
+    } else if (currentVideo === 'takagi-san.mp4') {
+        console.log("else if (currentVideo === 'takagi-san.mp4') in nowPlayingText() [setting.js]")
+        playing_text.innerHTML = "Now Playing : からかい上手の高木さん２ (OP)"
     } else {
         // If it's show null it must have an fatal error with `currentVideo` or more
         console.log("else in nowPlayingText() [setting.js]")

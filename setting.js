@@ -53,6 +53,9 @@ function changeMode() {
     if (videoMode === true) {
         console.log("if (videoMode === true) in changeMode() [setting.js]")
         currentMode = 'normal';
+        if (video.play) {
+            video.pause();
+        }
         scratchDisc();
         videoMode = false;
         showBackgroundButton()
@@ -62,9 +65,6 @@ function changeMode() {
         current_mode_text.innerHTML = 'Current Mode : Normal Mode';
         mode_button.innerHTML = "Change to Video Mode"
         warning_background.innerHTML = "";
-        if (video.play) {
-            video.pause();
-        }
         warning_video.innerHTML = "<i class=\"fas fa-exclamation-circle\"></i>You are in normal mode. Please change to video mode first.";
         background_button.disabled = false;
         changeKeyboardShortcutText("normal")
@@ -249,17 +249,11 @@ video.addEventListener('play', event => {
     }
 });
 video.addEventListener('pause', event => {
-    if (!videoMode) {
-        video.pause();
-        errorSound();
-        console.error("Error : You are not in `videoMode` so this command cannot run! You can run it???")
-    } else {
-        console.log("% change videoButton text to play symbol by video.addEventListener('pause') [setting.js]");
-        if (currentMode === 'video') {
-            play_setting.innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-play"></i></button>';
-        }
-        videoPlaying = false;
+    console.log("% change videoButton text to play symbol by video.addEventListener('pause') [setting.js]");
+    if (currentMode === 'video') {
+        play_setting.innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-play"></i></button>';
     }
+    videoPlaying = false;
 });
 video.addEventListener('muted', event => {
     console.log("% change VideoMuted text to volumeup symbol by video.addEventListener('muted') [setting.js]");

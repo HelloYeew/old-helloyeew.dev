@@ -236,18 +236,30 @@ function changeKeyboardShortcutText(mode) {
 
 // EventListener
 video.addEventListener('play', event => {
-    console.log("% change videoButton text to pause symbol by video.addEventListener('play') [setting.js]");
-    if (currentMode === 'video') {
-        play_setting.innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-pause"></i></button>';
+    if (!videoMode) {
+        video.pause();
+        errorSound();
+        console.error("Error : You are not in `videoMode` so this command cannot run! You can run it???")
+    } else {
+        console.log("% change videoButton text to pause symbol by video.addEventListener('play') [setting.js]");
+        if (currentMode === 'video') {
+            play_setting.innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-pause"></i></button>';
+        }
+        videoPlaying = true;
     }
-    videoPlaying = true;
 });
 video.addEventListener('pause', event => {
-    console.log("% change videoButton text to play symbol by video.addEventListener('pause') [setting.js]");
-    if (currentMode === 'video') {
-        play_setting.innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-play"></i></button>';
+    if (!videoMode) {
+        video.pause();
+        errorSound();
+        console.error("Error : You are not in `videoMode` so this command cannot run! You can run it???")
+    } else {
+        console.log("% change videoButton text to play symbol by video.addEventListener('pause') [setting.js]");
+        if (currentMode === 'video') {
+            play_setting.innerHTML = '<button class="btn_one" id="videoButton" onmouseover=settingMouseOver() onclick=videoFunction()><i class="fas fa-play"></i></button>';
+        }
+        videoPlaying = false;
     }
-    videoPlaying = false;
 });
 video.addEventListener('muted', event => {
     console.log("% change VideoMuted text to volumeup symbol by video.addEventListener('muted') [setting.js]");

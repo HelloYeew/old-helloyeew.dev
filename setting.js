@@ -194,9 +194,6 @@ function nowPlayingText() {
     } else if (currentVideo === 'umaru.mp4') {
         console.log("else if (currentVideo === 'umaru.mp4') in nowPlayingText() [setting.js]")
         playing_text.innerHTML = "Now Playing : かくしん的☆めたまるふぉ～ぜっ！(OP)"
-    } else if (currentVideo === 'takagi-san.mp4') {
-        console.log("else if (currentVideo === 'takagi-san.mp4') in nowPlayingText() [setting.js]")
-        playing_text.innerHTML = "Now Playing : からかい上手の高木さん２ (OP)"
     } else {
         // If it's show null it must have an fatal error with `currentVideo` or more
         console.log("else in nowPlayingText() [setting.js]")

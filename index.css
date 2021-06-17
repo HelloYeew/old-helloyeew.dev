@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url("https://use.typekit.net/cnm5kka.css");
 
 body {
     padding:0px;
@@ -8,7 +9,7 @@ body {
     width:100vw;
     height:100vh;
     overflow:hidden;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'all-round-gothic', sans-serif;
 }
 video {
     object-fit: cover;
@@ -91,6 +92,10 @@ video {
     color:rgb(255, 50, 50);
     font-size:70px;
     text-decoration:underline;
+    font-weight: 600;
+}
+h2 {
+    font-weight: 200;
 }
 #about {
     width:10vw;

@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 @import url("https://use.typekit.net/cnm5kka.css");
 
+* {
+    cursor: url("assets/cursor/cursor.png"), auto;
+}
 body {
     padding:0px;
     margin:0px;
@@ -155,15 +158,12 @@ h3 {
 }
 #about:hover {
     background:rgba(255, 102, 171,0.9);
-    cursor:pointer;
 }
 #work:hover {
     background:rgba(255, 102, 171,0.9);
-    cursor:pointer;
 }
 #contact:hover {
     background:rgba(255, 102, 171,0.9);
-    cursor:pointer;
 }
 #middle table {
     width:30%;
@@ -180,8 +180,7 @@ h3 {
     margin:0px 8px;
     text-align:center;
 }
-.social:hover { 
-    cursor: pointer;
+.social:hover {
     color:rgb(255, 102, 171);
 }
 .container {
@@ -247,7 +246,7 @@ h3 {
     transition:0.4s ease-in-out;
 }
 .btn_one:hover {
-    cursor:pointer;
+    cursor: url("assets/cursor/cursor.png"), auto;
     color:rgb(255, 102, 171);
     background:#fff;
 }
@@ -264,7 +263,7 @@ h3 {
     transition:0.4s ease-in-out;
 }
 .btn_two:hover {
-    cursor:pointer;
+    cursor: url("assets/cursor/cursor.png"), auto;
     padding:8px 60px;
 }
 .container form input {
@@ -380,7 +379,7 @@ h3 {
     transition:0.4s ease-in-out;
 }
 .btn_one:hover {
-    cursor:pointer;
+    cursor: url("assets/cursor/cursor.png"), auto;
     color:rgb(255, 102, 171);
     background:#fff;
 }
@@ -397,7 +396,7 @@ h3 {
     transition:0.4s ease-in-out;
 }
 .btn_two:hover {
-    cursor:pointer;
+    cursor: url("assets/cursor/cursor.png"), auto;
     padding:8px 60px;
 }
 .setting-container form input {

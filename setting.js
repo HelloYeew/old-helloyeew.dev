@@ -154,7 +154,6 @@ function showVideoButton() {
     video_change_button.innerHTML = "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('ano-yume.mp4')>あの夢をなぞって</button>" +
         "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('jumping-heart.mp4')>青空Jumping Heart (OP)</button>" +
         "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('mopemope.mp4')>もぺもぺ</button>" +
-        "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('takagi-san.mp4')>からかい上手の高木さん２ (OP)</button>" +
         "<button class='btn_one' onmouseover=settingMouseOver() onclick=changeVideo('umaru.mp4')>かくしん的☆めたまるふぉ～ぜっ！(OP)</button>"
     if (currentVideo === "mopemope.mp4") {
         age_notice_text.innerHTML = '<i class=\"fas fa-exclamation-circle\"></i>This video is NOT for children!'

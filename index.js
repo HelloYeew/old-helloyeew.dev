@@ -26,6 +26,10 @@ let currentMode = 'normal';
 let videoMode = false;
 let videoPlaying = false;
 
+let backgroundList = ['ano-yume-poster.png', 'black.svg', 'firework.jpeg', 'firework_festival_girl.jpg', 'hanabi.jpeg',
+    'snow_miku.jpeg', 'snow_mountain.jpeg', 'sword-art-online.png', 'yourname.gif', 'yourname.png']
+let videoList = ['ano-yume.mp4', 'jumping-heart.mp4', 'mopemope.mp4', 'umaru.mp4']
+
 // TODO: Add video time on player
 // TODO: Change color
 
@@ -204,11 +208,16 @@ function changeBackground(filename) {
     console.log("changeBackground(" + filename + ") [index.js]")
     if (videoMode === true) {
         errorSound();
+        console.error("Error : You are in `videoMode`. Something get wrong here!")
         document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/black.svg") center center';
-    } else {
+    } else if (backgroundList.includes(filename)) {
         settingSelect();
         document.body.style.background = 'linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("assets/background/' + filename + '") center center';
         currentBackground = filename;
+    }
+    else {
+        errorSound();
+        console.error("Error : A target filename (" + filename + ") is not in `backgroundList`. You run something on console???");
     }
     // TODO: Support if we don't have that file (This support typo or if someone play something with JS in console)
     console.log("-------")

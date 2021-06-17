@@ -163,18 +163,28 @@ function showVideoButton() {
 
 // Change video source, load resource and start playing a new video
 function changeVideo(filename) {
-    console.log("changeVideo(filename) [setting.js]")
-    console.log("-------")
-    confirmSelection()
-    video.pause();
-    currentVideo = filename;
-    source.setAttribute('src', 'assets/background/' + filename);
-    nowPlayingText()
-    video.load();
-    video.play();
-    if (currentVideo === "mopemope.mp4") {
-        console.log('if (currentVideo === "mopemope.mp4") in changeVideo(filename) [setting.js]')
-        age_notice_text.innerHTML = '<i class=\"fas fa-exclamation-circle\"></i>This video is NOT for children!'
+    console.log("changeVideo(" + filename + ") [setting.js]")
+    if (!videoMode) {
+        errorSound();
+        console.error("Error : You are not in `videoMode`. Something get wrong here!")
+    }
+    else if (videoList.includes(filename)) {
+        console.log("-------")
+        confirmSelection()
+        video.pause();
+        currentVideo = filename;
+        source.setAttribute('src', 'assets/background/' + filename);
+        nowPlayingText()
+        video.load();
+        video.play();
+        if (currentVideo === "mopemope.mp4") {
+            console.log('if (currentVideo === "mopemope.mp4") in changeVideo(filename) [setting.js]')
+            age_notice_text.innerHTML = '<i class=\"fas fa-exclamation-circle\"></i>This video is NOT for children!'
+        }
+    }
+    else {
+        errorSound();
+        console.error("Error : A target filename (" + filename + ") is not in `videoList`. You run something on console???");
     }
 }
 

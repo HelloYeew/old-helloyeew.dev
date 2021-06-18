@@ -19,11 +19,11 @@ function showsetting(){
 function closesetting(){
     console.log("Setting closed by closesetting() [body.js]")
     console.log("-------")
+    openSetting = false;
     WaveOut.play();
     $("#setting_container").addClass("animated slideOutLeft");
     setTimeout(function(){
         $("#setting_container").removeClass("animated slideOutLeft");
         $("#setting_container").css("display","none");
     },800);
-    openSetting = false;
 }

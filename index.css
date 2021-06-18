@@ -4,6 +4,9 @@
 * {
     cursor: url("assets/cursor/cursor.png"), auto;
 }
+.mouseDown{
+    cursor: url("assets/cursor/cursor-click.png"), auto;
+}
 body {
     padding:0px;
     margin:0px;

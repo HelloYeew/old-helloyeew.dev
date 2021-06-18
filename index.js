@@ -278,3 +278,20 @@ function checkAndOpen(target_windows) {
     }
 }
 
+// $("div").on("mousedown", function (e) {
+//     e.preventDefault();
+//     $("div").addClass("mouseDown");
+//     $("h1").addClass("mouseDown");
+//     $("h2").addClass("mouseDown");
+//     $("p").addClass("mouseDown");
+//     $("a").addClass("mouseDown");
+//     $(".container").addClass("mouseDown");
+// }).on("mouseup", function () {
+//     $("div").removeClass("mouseDown");
+//     $("h1").removeClass("mouseDown");
+//     $("h2").removeClass("mouseDown");
+//     $("p").removeClass("mouseDown");
+//     $("a").removeClass("mouseDown");
+//     $(".container").removeClass("mouseDown");
+// });
+

@@ -13,6 +13,7 @@ body {
     height:100vh;
     overflow:hidden;
     font-family: 'all-round-gothic', sans-serif;
+    cursor: url("assets/cursor/cursor.png"), auto;
 }
 div {
     cursor: url("assets/cursor/cursor.png"), auto;

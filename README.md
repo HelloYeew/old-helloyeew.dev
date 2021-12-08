@@ -1,5 +1,5 @@
 # helloyeew.dev
  Source code of helloyeew.dev.
  
-# Disclaimer
+# Source
 Sound effect in this website : osu-resource
